@@ -17,6 +17,14 @@
         button { width: 100%; padding: 0.75rem; background: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
         button:hover { background: #45a049; }
         .login-link { text-align: center; margin-top: 1rem; }
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background: white;
+        }
     </style>
 </head>
 <body>
@@ -28,6 +36,17 @@
                 {{ session('success') }}
             </div>
         @endif
+
+        <div class="form-group">
+            <label for="role">Daftar Sebagai</label>
+            <select id="role" name="role" required>
+                <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>User</option>
+                <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+            </select>
+            @error('role')
+                <div class="error">{{ $message }}</div>
+            @enderror
+        </div>
 
         <form method="POST" action="{{ route('register.post') }}">
             @csrf

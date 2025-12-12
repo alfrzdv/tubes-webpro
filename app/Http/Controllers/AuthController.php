@@ -38,9 +38,12 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Login otomatis setelah register
+        // Bagian akhir method register
         auth()->login($user);
 
         return redirect()->route('home')->with('success', 'Registrasi berhasil!');
     }
+
+
+
 }

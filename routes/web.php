@@ -36,3 +36,10 @@ Route::middleware(['user'])->group(function () {
     })->name('user.dashboard');
 });
 
+use App\Http\Controllers\HomeController;
+
+// Home route (setelah login)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
